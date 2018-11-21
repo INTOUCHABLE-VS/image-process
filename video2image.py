@@ -21,14 +21,17 @@ def video2image(srcVideoPath, savePath, width=4):
         if rval:
             frames.append(frame)
             cv2.waitKey(1)
-    assert (10**width - 1) > (index - 1), "帧数比宽度最大值要多，请重新输入width"
+    assert (10 ** width - 1) > (index - 1), "帧数比宽度最大值要多，请重新输入width"
+    i = 1
     if not os.path.exists(savePath):
         os.makedirs(savePath)
-        for i in range(index - 1):
+        for frame in frames:
             cv2.imwrite(savePath + "/" + str(i + 1).zfill(width) + ".jpg", frame)
+            i += 1
     else:
-        for i in range(index - 1):
+        for frame in frames:
             cv2.imwrite(savePath + "/" + str(i + 1).zfill(width) + ".jpg", frame)
+            i += 1
     vc.release()
 
 
